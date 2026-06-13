@@ -774,6 +774,7 @@
 
 
 
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Zap, ShieldAlert, X } from "lucide-react";
@@ -814,40 +815,65 @@ const OverviewBox = ({ title, subtitle, onClick }) => (
 );
 
 
-const WingOverviewBox = ({ title, subtitle }) => (
-  <div className="h-[160px] w-[50%] mx-auto bg-[#081F5C] border-2 border-[#004AAD] text-white rounded-1 shadow-xl hover:bg-[#0A276E] transition-all duration-300 flex items-center justify-center gap-4 px-4">
+// const WingOverviewBox = ({ title, subtitle }) => (
+//   <div className="h-[160px] w-[50%] mx-auto bg-[#081F5C] border-2 border-[#004AAD] text-white rounded-1 shadow-xl hover:bg-[#0A276E] transition-all duration-300 flex items-center justify-center gap-4 px-4">
 
-    {/* Building Design */}
+//     {/* Building Design */}
+//     <div className="w-[55px] h-[100px] bg-[#05143C] border border-[#004AAD] rounded-t-sm p-1.5 flex flex-col justify-between shrink-0">
+//       <div className="h-[2px] w-full bg-cyan-400 shadow-[0_0_8px_#00E5FF]" />
+
+//       <div className="grid grid-cols-4 gap-1">
+//         {Array.from({ length: 28 }).map((_, i) => (
+//           <span
+//             key={i}
+//             className="h-1.5 rounded-[2px] bg-white/15"
+//           />
+//         ))}
+//       </div>
+
+//       <div className="h-1.5 w-full bg-[#004AAD]" />
+//     </div>
+
+//     {/* Text Section */}
+//     <div className="text-center">
+//       <h3 className="text-lg font-semibold uppercase tracking-wide">
+//         {title}
+//       </h3>
+
+//       <p className="text-[11px] text-blue-300 font-semibold uppercase mt-2">
+//         {subtitle}
+//       </p>
+//     </div>
+
+//   </div>
+// );
+
+const WingOverviewBox = ({ title, subtitle, onClick }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    className="h-[160px] w-[50%] mx-auto bg-[#081F5C] border-2 border-[#004AAD] text-white rounded-1 shadow-xl hover:bg-[#0A276E] transition-all duration-300 flex items-center justify-center gap-4 px-4"
+  >
     <div className="w-[55px] h-[100px] bg-[#05143C] border border-[#004AAD] rounded-t-sm p-1.5 flex flex-col justify-between shrink-0">
       <div className="h-[2px] w-full bg-cyan-400 shadow-[0_0_8px_#00E5FF]" />
 
       <div className="grid grid-cols-4 gap-1">
         {Array.from({ length: 28 }).map((_, i) => (
-          <span
-            key={i}
-            className="h-1.5 rounded-[2px] bg-white/15"
-          />
+          <span key={i} className="h-1.5 rounded-[2px] bg-white/15" />
         ))}
       </div>
 
       <div className="h-1.5 w-full bg-[#004AAD]" />
     </div>
 
-    {/* Text Section */}
     <div className="text-center">
-      <h3 className="text-lg font-semibold uppercase tracking-wide">
-        {title}
-      </h3>
-
+      <h3 className="text-lg font-semibold uppercase tracking-wide">{title}</h3>
       <p className="text-[11px] text-blue-300 font-semibold uppercase mt-2">
         {subtitle}
       </p>
     </div>
-
-  </div>
+  </button>
 );
-
-
 const FlowLineH = () => (
   <div className="h-[4px] w-full bg-cyan-400 relative overflow-hidden">
     <div className="flow-pulse-horizontal" />
@@ -996,7 +1022,8 @@ const FlowLineV = () => (
   //     </div>
   //   </PopupShell>
   // );
-const SourceBox = ({ title, subtitle, icon }) => (
+
+  const SourceBox = ({ title, subtitle, icon }) => (
   <div className="h-[115px] w-full bg-[#081F5C] border-2 border-[#004AAD] text-white rounded-none shadow-xl panel-active-glow flex flex-col items-center justify-center text-center px-4">
     {icon && (
       <div className="bg-[#05143C] p-2 border border-blue-900 mb-2">
@@ -1005,7 +1032,7 @@ const SourceBox = ({ title, subtitle, icon }) => (
     )}
 
     <span className="text-[9px] font-black text-blue-300 tracking-[0.2em] uppercase">
-      {subtitle}
+      {subtitle}x
     </span>
 
     <h4 className="text-lg font-semibold uppercase tracking-wide mt-1">
@@ -1014,8 +1041,10 @@ const SourceBox = ({ title, subtitle, icon }) => (
   </div>
 );
 
+
+
 const SourcePopup = () => (
-  <PopupShell title="33kV Source → Incoming / Outgoing → Meter → Feeder">
+  <PopupShell title="33kV Source → 2 Incoming / 1 Outgoing ">
     <div className="max-w-5xl mx-auto">
 
       {/* SOURCE */}
@@ -1161,35 +1190,25 @@ const SourcePopup = () => (
               <circle cx="20" cy="15" r="12" stroke="currentColor" strokeWidth="2.5" />
               <circle cx="40" cy="15" r="12" stroke="currentColor" strokeWidth="2.5" />
             </svg> */}
-   <svg
+  <svg
   className="w-16 h-10 text-blue-300"
   viewBox="0 0 80 40"
   fill="none"
 >
-  {/* 33kV Side */}
+  {/* 33kV Side - Larger */}
   <circle
-    cx="28"
+    cx="30"
     cy="20"
     r="12"
     stroke="currentColor"
     strokeWidth="2.5"
   />
 
-  {/* Core */}
-  <line
-    x1="40"
-    y1="8"
-    x2="40"
-    y2="32"
-    stroke="currentColor"
-    strokeWidth="2"
-  />
-
-  {/* 433V Side */}
+  {/* 433V Side - Smaller & Overlapping */}
   <circle
-    cx="50"
+    cx="46"
     cy="20"
-    r="7"
+    r="8"
     stroke="currentColor"
     strokeWidth="2.5"
   />
@@ -1212,35 +1231,25 @@ const SourcePopup = () => (
                     <div>
                       <div className="mb-3 flex justify-center items-center">
                         {/* <svg className="w-14 h-8 text-blue-300" viewBox="0 0 60 30" fill="none"><circle cx="20" cy="15" r="12" stroke="currentColor" strokeWidth="2.5" /><circle cx="40" cy="15" r="12" stroke="currentColor" strokeWidth="2.5" /></svg> */}
-   <svg
+ <svg
   className="w-16 h-10 text-blue-300"
   viewBox="0 0 80 40"
   fill="none"
 >
-  {/* 33kV Side */}
+  {/* 33kV Side - Larger */}
   <circle
-    cx="28"
+    cx="30"
     cy="20"
     r="12"
     stroke="currentColor"
     strokeWidth="2.5"
   />
 
-  {/* Core */}
-  <line
-    x1="40"
-    y1="8"
-    x2="40"
-    y2="32"
-    stroke="currentColor"
-    strokeWidth="2"
-  />
-
-  {/* 433V Side */}
+  {/* 433V Side - Smaller & Overlapping */}
   <circle
-    cx="50"
+    cx="46"
     cy="20"
-    r="7"
+    r="8"
     stroke="currentColor"
     strokeWidth="2.5"
   />
@@ -1332,6 +1341,287 @@ const SourcePopup = () => (
     </PopupShell>
   );
 
+const Wing1Popup = () => (
+  <PopupShell title="Wing 1 LT Distribution Flow">
+    <div className="relative w-full max-w-7xl mx-auto px-4 py-6 bg-white border border-slate-200 overflow-hidden">
+      <div className="relative w-full h-[560px]">
+
+        {/* PCC1 */}
+        <div className="absolute left-[3%] top-[20px] w-[30%] h-[235px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            PCC1
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 h-[150px]">
+            {[
+              { title: "LT IN", value: "06" },
+              { title: "LT IN", value: "05" },
+            ].map((item) => (
+              <div
+                key={item.value}
+                className="bg-[#05143C] border-2 border-[#004AAD] rounded-xl flex flex-col items-center justify-center shadow-[0_0_16px_rgba(0,74,173,0.35)]"
+              >
+                <span className="text-[10px] font-black text-blue-300 uppercase">
+                  {item.title}
+                </span>
+                <strong className="text-3xl font-black mt-2">
+                  {item.value}
+                </strong>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* PCC2 */}
+        <div className="absolute left-[3%] top-[320px] w-[30%] h-[210px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            PCC2
+          </div>
+
+          <div className="grid grid-cols-2 gap-6 h-[125px]">
+            {[
+              { title: "LT IN", value: "01" },
+              { title: "LT IN", value: "02" },
+            ].map((item) => (
+              <div
+                key={item.value}
+                className="bg-[#05143C] border-2 border-[#004AAD] rounded-xl flex flex-col items-center justify-center shadow-[0_0_16px_rgba(0,74,173,0.35)]"
+              >
+                <span className="text-[10px] font-black text-blue-300 uppercase">
+                  {item.title}
+                </span>
+                <strong className="text-3xl font-black mt-2">
+                  {item.value}
+                </strong>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* DG INC */}
+        <div className="absolute right-[3%] top-[130px] w-[39%] h-[265px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            DG INC
+          </div>
+
+          <div className="grid grid-cols-2 gap-7">
+            {[
+              { title: "DG 1 & 2", values: ["1", "2"] },
+              { title: "DG 3 & 4", values: ["3", "4"] },
+            ].map((group) => (
+              <div
+                key={group.title}
+                className="bg-[#05143C] border-2 border-[#004AAD] p-4 rounded-xl shadow-[0_0_16px_rgba(0,74,173,0.35)]"
+              >
+                <div className="text-center text-[11px] font-black text-blue-300 uppercase mb-4">
+                  {group.title}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {group.values.map((value) => (
+                    <div
+                      key={value}
+                      className="h-[90px] bg-[#081F5C] border-2 border-[#004AAD] rounded-xl flex items-center justify-center text-2xl font-black shadow-[0_0_14px_rgba(0,74,173,0.35)]"
+                    >
+                      {value}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FLOWS */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          viewBox="0 0 1200 560"
+          fill="none"
+        >
+          <defs>
+            <marker
+              id="wing-arrow"
+              viewBox="0 0 10 10"
+              refX="6"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto"
+            >
+              <path d="M 0 2 L 6 5 L 0 8 z" fill="#00E5FF" />
+            </marker>
+          </defs>
+
+          {/* DG 1&2 to PCC1 */}
+<path
+  d="M 360 105 H 820 V 250"
+  stroke="#004AAD"
+  strokeWidth="3"
+  fill="none"
+/>
+
+<path
+  d="M 360 105 H 820 V 250"
+  stroke="#00E5FF"
+  strokeWidth="3"
+  fill="none"
+  className="flow-path-right"
+  markerEnd="url(#wing-arrow)"
+/>
+
+          {/* DG 1&2 to PCC2 */}
+          <path d="M 820 245 V 455 H 360" stroke="#004AAD" strokeWidth="3" fill="none" />
+          <path
+            d="M 820 245 V 455 H 360"
+            stroke="#00E5FF"
+            strokeWidth="3"
+            fill="none"
+            className="flow-path-left"
+            markerEnd="url(#wing-arrow)"
+          />
+
+          {/* DG 3&4 to PCC1 */}
+          <path d="M 1020 205 V 70 H 360" stroke="#004AAD" strokeWidth="3" fill="none" />
+          <path
+            d="M 1020 205 V 70 H 360"
+            stroke="#00E5FF"
+            strokeWidth="3"
+            fill="none"
+            className="flow-path-left"
+            markerEnd="url(#wing-arrow)"
+          />
+
+          {/* DG 3&4 to PCC2 */}
+          <path d="M 1020 380 V 485 H 360" stroke="#004AAD" strokeWidth="3" fill="none" />
+          <path
+            d="M 1020 380 V 485 H 360"
+            stroke="#00E5FF"
+            strokeWidth="3"
+            fill="none"
+            className="flow-path-left"
+            markerEnd="url(#wing-arrow)"
+          />
+        </svg>
+
+      </div>
+    </div>
+  </PopupShell>
+);
+
+const Wing2Popup = () => (
+  <PopupShell title="Wing 2 LT Distribution Flow">
+    <div className="relative w-full max-w-7xl mx-auto px-4 py-6 bg-white border border-slate-200 overflow-hidden">
+      <div className="relative w-full h-[560px]">
+
+        {/* PCC3 */}
+        <div className="absolute left-[3%] top-[60px] w-[30%] h-[210px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            PCC3
+          </div>
+
+          <div className="h-[125px]">
+            <div className="h-full bg-[#05143C] border-2 border-[#004AAD] rounded-xl flex flex-col items-center justify-center shadow-[0_0_16px_rgba(0,74,173,0.35)]">
+              <span className="text-[10px] font-black text-blue-300 uppercase">
+                LT IN
+              </span>
+              <strong className="text-3xl font-black mt-2">
+                04
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        {/* PCC4 */}
+        <div className="absolute left-[3%] top-[330px] w-[30%] h-[210px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            PCC4
+          </div>
+
+          <div className="h-[125px]">
+            <div className="h-full bg-[#05143C] border-2 border-[#004AAD] rounded-xl flex flex-col items-center justify-center shadow-[0_0_16px_rgba(0,74,173,0.35)]">
+              <span className="text-[10px] font-black text-blue-300 uppercase">
+                LT IN
+              </span>
+              <strong className="text-3xl font-black mt-2">
+                03
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        {/* DG INC */}
+        <div className="absolute right-[3%] top-[170px] w-[39%] h-[235px] bg-[#081F5C] border-2 border-[#004AAD] p-5 text-white shadow-md rounded-lg panel-active-glow z-20">
+          <div className="text-center text-[12px] font-black text-blue-300 tracking-[0.2em] uppercase mb-4 border-b border-blue-900/60 pb-2">
+            DG INC
+          </div>
+
+          <div className="grid grid-cols-3 gap-5 h-[145px]">
+            {["5", "6", "7"].map((value) => (
+              <div
+                key={value}
+                className="bg-[#05143C] border-2 border-[#004AAD] rounded-xl flex items-center justify-center text-3xl font-black shadow-[0_0_16px_rgba(0,74,173,0.35)]"
+              >
+                {value}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* FLOWS */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none z-10"
+          viewBox="0 0 1200 560"
+          fill="none"
+        >
+          <defs>
+            <marker
+              id="wing2-arrow"
+              viewBox="0 0 10 10"
+              refX="6"
+              refY="5"
+              markerWidth="5"
+              markerHeight="5"
+              orient="auto"
+            >
+              <path d="M 0 2 L 6 5 L 0 8 z" fill="#00E5FF" />
+            </marker>
+          </defs>
+
+          {/* DG to PCC3 */}
+          <path
+  d="M 360 130 H 850 V 220"
+  stroke="#004AAD"
+  strokeWidth="3"
+  fill="none"
+/>
+
+<path
+  d="M 360 130 H 850 V 220"
+  stroke="#00E5FF"
+  strokeWidth="3"
+  fill="none"
+  className="flow-path-right"
+  markerEnd="url(#wing2-arrow)"
+/>
+
+          {/* DG to PCC4 */}
+          <path d="M 820 310 V 455 H 360" stroke="#004AAD" strokeWidth="3" fill="none" />
+          <path
+            d="M 820 310 V 455 H 360"
+            stroke="#00E5FF"
+            strokeWidth="3"
+            fill="none"
+            className="flow-path-left"
+            markerEnd="url(#wing2-arrow)"
+          />
+        </svg>
+
+      </div>
+    </div>
+  </PopupShell>
+);
+
+
   return (
     <main className="min-h-screen bg-white text-[#081F5C] flex flex-col font-sans">
       <header className="sticky top-0 z-50 h-[72px] bg-[#081F5C] border-b-4 border-[#004AAD] px-4 text-white shadow-md">
@@ -1347,21 +1637,23 @@ const SourcePopup = () => (
         </div>
       </header>
 
-<section className="w-full h-[calc(100vh-72px)] bg-slate-50 px-8 py-8 overflow-hidden">
-  <div className="w-full h-full flex flex-col justify-center">
+      
+
+<section className="w-full h-[calc(100vh-72px)] bg-slate-50 px-8 pt-2 pb-4 overflow-hidden">
+  <div className="w-full h-full flex flex-col justify-start">
 
     {/* ROW 1: SOURCE → FEEDERS → TRANSFORMER → LT KIOSK */}
     <div className="grid grid-cols-[1fr_70px_1fr_70px_1fr_70px_1fr] items-center">
       <OverviewBox
         title="33kV Source"
-        subtitle="Source → Incoming → Outgoing"
+        subtitle="2 Incoming / 1 Outgoing"
         onClick={() => setActivePopup("source")}
       />
 
       <FlowLineH />
 
       <OverviewBox
-        title="33kv Feeder"
+        title="33kV Feeder"
         subtitle="1 Incoming / 6 Outgoing"
         onClick={() => setActivePopup("feeders")}
       />
@@ -1383,87 +1675,86 @@ const SourcePopup = () => (
       />
     </div>
 
-    {/* LT KIOSK → LEFT FLOW → BUSDUCT */}
-    <div className="relative h-[70px] w-full">
-      {/* Down from LT Kiosk bottom */}
-      <div className="absolute right-[12.5%] top-0 h-[35px] -translate-x-1/2">
+    {/* LT KIOSK → BUSDUCT */}
+    <div className="relative h-[42px] w-full">
+      <div className="absolute right-[12.5%] top-0 h-[21px] -translate-x-1/2">
         <FlowLineV />
       </div>
 
-      {/* Left horizontal flow */}
-      <div className="absolute left-1/2 right-[12.5%] top-[35px]">
+      <div className="absolute left-[7.5%] right-[12.5%] top-[20px]">
         <FlowLineH />
       </div>
 
-      {/* Down to Busduct top */}
-      <div className="absolute left-1/2 top-[35px] h-[25px] -translate-x-1/2">
+      <div className="absolute left-[7.5%] top-[20px] h-[30px] -translate-x-1/2">
         <FlowLineV />
       </div>
     </div>
 
-    {/* ROW 2: BUSDUCT CENTER */}
-    <div className="grid grid-cols-[1fr_42%_1fr]">
-  <div />
+    {/* ROW 2: BUSDUCT → WING 1 + TOP BUSBAR → WING 2 */}
+    <div className="relative mt-2">
 
-  <div className="w-[75%] mx-auto">
-    <OverviewBox
-      title="Busduct"
-      subtitle="LT Busduct Distribution"
-      onClick={() => setActivePopup("busbars")}
-    />
-  </div>
+      {/* Top busbar from Busduct to Wing 2 */}
+      <div className="absolute left-[12.5%] right-[36.5%] -top-[18px] h-[18px] pointer-events-none">
+        <div className="absolute left-0 top-0 h-[18px]">
+          <FlowLineV />
+        </div>
 
-  <div />
-</div>
+        <div className="absolute left-0 right-0 top-0">
+          <FlowLineH />
+        </div>
 
-    {/* BUSDUCT → WING 1 / WING 2 */}
-    <div className="relative h-[85px] w-full">
-      {/* Down from Busduct bottom */}
-      <div className="absolute left-1/2 top-0 h-[38px] -translate-x-1/2">
-        <FlowLineV />
+        <div className="absolute right-0 top-0 h-[18px]">
+          <FlowLineV />
+        </div>
       </div>
 
-      {/* Horizontal split */}
-      <div className="absolute left-[25%] right-[25%] top-[38px]">
+      <div className="grid grid-cols-[1fr_70px_1fr_70px_1fr_70px_1fr] items-center">
+
+        <OverviewBox
+          title="Busduct"
+          subtitle="LT Busduct Distribution"
+          onClick={() => setActivePopup("busbars")}
+        />
+
         <FlowLineH />
-      </div>
 
-      {/* Down to Wing 1 top */}
-      <div className="absolute left-[25%] top-[38px] h-[35px] -translate-x-1/2">
-        <FlowLineV />
-      </div>
+        <OverviewBox
+          title="Wing 1"
+          subtitle="20 Floors / 40 Zones"
+          onClick={() => setActivePopup("wing1")}
+        />
 
-      {/* Down to Wing 2 top */}
-      <div className="absolute right-[25%] top-[38px] h-[35px] translate-x-1/2">
-        <FlowLineV />
+        <div />
+
+        <OverviewBox
+          title="Wing 2"
+          subtitle="20 Floors / 40 Zones"
+          onClick={() => setActivePopup("wing2")}
+        />
+
+        <div />
+        <div />
       </div>
     </div>
-
-    {/* ROW 3: WINGS */}
-  <div className="grid grid-cols-2 gap-16">
-  <Link to="/building/sky-1" className="w-full">
-    <WingOverviewBox
-      title="Wing 1"
-      subtitle="20 Floors / 40 Zones"
-    />
-  </Link>
-
-  <Link to="/building/sky-2" className="w-full">
-    <WingOverviewBox
-      title="Wing 2"
-      subtitle="20 Floors / 40 Zones"
-    />
-  </Link>
-</div>
 
   </div>
 </section>
+
+
+
+
 
       {activePopup === "source" && <SourcePopup />}
       {activePopup === "feeders" && <FeederPopup />}
       {activePopup === "transformers" && <TransformersPopup />}
       {activePopup === "kiosks" && <KioskPopup />}
       {activePopup === "busbars" && <BusbarPopup />}
+{activePopup === "wing1" && <Wing1Popup />}
+{activePopup === "wing2" && <Wing2Popup />}
+
+
+
+
 
       <footer className="bg-slate-100 border-t border-slate-200 py-6 px-6 text-slate-500 text-xs">
         <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 font-semibold">
